@@ -81,3 +81,12 @@ main ul ul li:before,
 .sectioned p:first-child:before {
     content: "– ";
 }
+
+.rainbow i {
+    font-style: normal;
+}
+.rainbow i:nth-child(1) { color: #F51365; }
+.rainbow i:nth-child(2) { color: #D22384; }
+.rainbow i:nth-child(3) { color: #B332A0; }
+.rainbow i:nth-child(4) { color: #973FBA; }
+.rainbow i:nth-child(5) { color: #6D54E0; }
