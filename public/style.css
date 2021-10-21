@@ -22,6 +22,13 @@ body {
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111;
+        color: #DDD;
+    }
+}
+
 section + section {
     margin-top: 2rem;
 }
@@ -47,9 +54,15 @@ h1 {
 }
 
 .colorful-life {
-    background-color: GRAY;
+    background-color: LightSlateGray;
     color: #fff;
     margin-left: -.5em;
+}
+
+@media (prefers-color-scheme: dark) {
+    h1 {
+        color: #fff;
+    }
 }
 
 h2 {
