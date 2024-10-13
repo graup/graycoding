@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Source_Code_Pro, Source_Sans_3 } from "@next/font/google";
+import { Source_Code_Pro, Source_Sans_3 } from "next/font/google";
 
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";

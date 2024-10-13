@@ -133,15 +133,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/font@npm:^14.2.14":
-  version: 14.2.14
-  resolution: "@next/font@npm:14.2.14"
-  peerDependencies:
-    next: "*"
-  checksum: 10c0/a2e3c6aa8b07e21979247096edad2e58a9ae41830444f1b32d9d4cf286ccd48c57739656c2c73691cd6b7b8b435d92919c4452ffb3dbd6c56a8cf3d0b3174358
-  languageName: node
-  linkType: hard
-
 "@next/mdx@npm:^14.2.15":
   version: 14.2.15
   resolution: "@next/mdx@npm:14.2.15"
@@ -2576,7 +2567,6 @@ __metadata:
   dependencies:
     "@mdx-js/loader": "npm:^3.0.1"
     "@mdx-js/react": "npm:^3.0.1"
-    "@next/font": "npm:^14.2.14"
     "@next/mdx": "npm:^14.2.15"
     "@tailwindcss/postcss": "npm:4.0.0-alpha.13"
     "@types/mdx": "npm:^2.0.13"
