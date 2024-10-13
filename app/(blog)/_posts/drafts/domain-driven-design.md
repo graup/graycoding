@@ -1,0 +1,1 @@
+EventStorming and Domain Driven Design as a bridge between design and engineering
