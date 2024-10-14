@@ -1,4 +1,5 @@
-import { Suspense } from "react";
+import { Suspense, type ComponentProps } from "react";
+import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import type {
   MDXRemoteOptions,
@@ -23,11 +24,30 @@ export async function generateStaticParams() {
   }));
 }
 
+/*
+async function ImportedImage({
+  src,
+  alt,
+  ...props
+}: ComponentProps<typeof Image>) {
+  const relativePath = path.join("../../_posts/", `${src}`);
+  const srcWithoutExtension = `${src}`.replace(/\.[^/.]+$/, "");
+  console.log({ relativePath });
+  //return null;
+  const some = require("../../_posts/what-is-a-product.jpg");
+  console.log({ some });
+
+  return <Image src={importedSrc.default} alt={alt} {...props} />;
+}
+*/
+
 const components: MDXComponents = {
   //Test,
   wrapper: function ({ children }: React.ComponentPropsWithoutRef<"div">) {
-    return <div className="mdx-wrapper">{children}</div>;
+    return <div className="prose">{children}</div>;
   },
+  //img: ImportedImage,
+  //Image: Image,
 };
 
 export default async function Page({ params }: { params: { slug: string } }) {

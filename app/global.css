@@ -75,11 +75,11 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all decoration-muted hover:decoration-muted-foreground underline-offset-3 decoration-[0.1em];
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  @apply text-muted-foreground;
   content: '#';
 }
 
@@ -88,11 +88,11 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  @apply bg-muted/30 rounded-md overflow-auto py-4 px-5 text-sm;
 }
 
-.prose code {
-  @apply px-1 py-0.5 rounded-lg;
+.prose :not(pre) code {
+  @apply px-1 py-0.5 text-sm bg-muted/60 rounded;
 }
 
 .prose pre code {
@@ -152,6 +152,15 @@ html {
   margin-bottom: 1.25em !important;
 }
 
+.prose figcaption {
+ @apply text-sm text-center -mt-2 mb-6 text-muted-foreground italic;
+ @apply border-b border-muted;
+}
+
+.prose figcaption p {
+  @apply my-2;
+}
+
 pre::-webkit-scrollbar {
   display: none;
 }
@@ -181,9 +190,10 @@ table {
 }
 
 
-.rainbow i {
+.rainbow em {
   font-style: normal;
 }
-.rainbow i:nth-child(1) { color: #F51365; }
-.rainbow i:nth-child(2) { color: #b33293; }
-.rainbow i:nth-child(3) { color: #813fba; }
+.rainbow em:nth-child(1) { color: #F51365; }
+.rainbow em:nth-child(2) { color: #b33293; }
+.rainbow em:nth-child(3) { color: #813fba; }
+

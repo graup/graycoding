@@ -42,6 +42,12 @@ function CustomLink(props: Omit<ComponentProps<"a">, "ref">) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
+function ImportedImage({ src, alt, ...props }: ComponentProps<typeof Image>) {
+  // Dynamically import the image
+  const importedSrc = require(`${src}`);
+  return <Image src={importedSrc} alt={alt} {...props} />;
+}
+
 function RoundedImage(props: ComponentProps<typeof Image>) {
   return <Image className="rounded-lg" {...props} />;
 }
@@ -128,7 +134,6 @@ function rehypeMdxImportMedia({ basePath }: { basePath: string }) {
       }
     }
     return function (tree: TreeNode) {
-      console.log(basePath);
       const imageNodes = Array.from(
         findNodes(tree, (node) => node.tagName === "img"),
       );
