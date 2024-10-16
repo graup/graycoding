@@ -1,0 +1,74 @@
+---
+title: "Ten Software Engineering Lessons from Scaling Startups from 20 to 100 People"
+publishedAt: "2023-04-06"
+summary: "Some advice for future CEOs, CTOs, PMs, and engineers of small startups expecting to grow."
+tags: product
+---
+
+Having worked as a product engineer for many years, I’ve had the opportunity to witness two startups scale from around 20 to 100 people.
+Based on my experience, here’s some advice–in no particular order–for future CEOs, CTOs, PMs, and engineers of small startups expecting to grow.
+I’ve also included links to related articles and tweets I found inspiring.
+
+1. **Don’t get bogged down by methodologies and hierarchy.**
+
+   Fixed large teams working on the same thing for too long often become stagnant.
+   [Keep teams small](https://basecamp.com/articles/how-we-structure-our-teams) or switch things up regularly.
+   Make project teams own their projects end-to-end as much as possible if you don’t have dedicated PMs or EMs.
+   [Empower engineers to be project leads.](https://blog.pragmaticengineer.com/project-management-at-big-tech/)
+
+1. **Be meticulous about hiring.**
+
+   Try to find a few [product-minded engineers](https://blog.pragmaticengineer.com/the-product-minded-engineer/).
+   Don’t hire too many juniors early on. If you do, get them to take ownership asap.
+   While juniors bring fresh perspectives and energy, they need time to grow and communicate effectively.
+   In early stages, 1 senior will have more impact than 2 juniors. Small teams of 1 experienced senior with 1 skilled junior can also be effective.
+
+1. **Don’t let your codebase rot.**
+
+   Your core features deserve continuous love and maintenance.
+   Regularly refactor, update dependencies, and keep your code clean–before it’s too late and people start considering total rewrites because nobody wants to touch the legacy code anymore.
+   Your systems must be able to grow along with your understanding of the domain and allow for upgrades.
+
+1. **Write integration tests for critical paths.**
+
+   All engineers learn that “you should write tests” but a lot of teams still don’t.
+   At the very least, write integration tests for your critical use cases–[without testing implementation details](https://kentcdodds.com/blog/testing-implementation-details).
+   Test edge cases like handling different user roles; things that can easily be forgotten in a few months where problems don’t surface easily.
+   Without tests, things WILL break at some point, and then your engineers will be busy fixing things after release instead of working on the next feature.
+
+1. **Make edge cases part of your specs.**
+
+   Don’t let missing data, permissions hiccups, or unexpected errors sneak into your product.
+   Have designers and engineers consider these explicitly; [plan and mitigate](https://twitter.com/carlvellotti/status/1640789675169161221).
+   Too often, these are just afterthoughts. Don't design only for the "happy path".
+
+1. **Don’t pay for enterprise software too early.**
+
+   User behavior analytics is great, but if you only have a few hundred users, can you really justify paying thousands of dollars for something like Amplitude?
+   Start simple and grow to more enterprisey services when you have the scale and can afford it.
+   There’s a vendor out there for every company size—choose wisely and grow sustainably.
+
+1. **Track important metrics, and do it well.**
+
+   While intricate user metrics and A/B testing may not be worth your time yet, defining your [North Star metrics](https://twitter.com/alexgarcia_atx/status/1454475114439917574?s=21) early is crucial.
+   Track them in a reliable way and ensure your team understands [why these metrics matter](https://future.com/north-star-metrics).
+
+1. **Hire user-centric, research-focused designers who question assumptions.**
+
+   You want UI/UX designers with a strong research, prototyping, and testing mentality.
+   A quick sketch visualizing an idea that can be shared with stakeholders and iterated on is far more valuable than pixel-perfect aesthetics.
+   Look for designers that ask: “[How do we know this?](https://twitter.com/tranhelen/status/1640789943013502976)”
+
+1. **Don’t assign tasks outside employees’ primary roles—unless it’s for skill development.**
+
+   Are your sales reps and UX designers stretching themselves thin by working on marketing materials?
+   While exploring branding can spark creativity and offer a refreshing change, it might be smarter to outsource these tasks to an agency initially and bring in dedicated experts as your budget allows.
+   One exception: if someone is passionate about acquiring a new skill and you can afford to invest their time, let them dive in.
+   Otherwise, it’s wiser to help them sharpening their expertise in their primary roles.
+
+1. **Most importantly, never get too comfortable.**
+
+   Do hard things. [Run towards fear](http://sophieshepherd.com/six-years/).
+   As a leader, you represent the upper bound of your team's appetite.
+   When leaders are not pushing themselves, their team won't either.
+   When leaders become apathetic, so do their teams.

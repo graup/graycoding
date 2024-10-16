@@ -10,12 +10,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Paul Grau",
-    template: "%s | Paul Grau",
+    template: "%s - Paul Grau",
   },
-  description: "This is my portfolio.",
+  description:
+    "Paul Grau, senior product engineer, writes about products, UI/UX, and working in a globalized world.",
   openGraph: {
     title: "Paul Grau",
-    description: "This is my portfolio.",
+    description:
+      "Paul Grau, senior product engineer, writes about products, UI/UX, and working in a globalized world.",
     url: baseUrl,
     siteName: "Paul Grau",
     locale: "en_US",
