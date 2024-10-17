@@ -57,7 +57,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-foreground bg-background",
+        "text-foreground bg-background scroll-pt-[75px] scroll-smooth",
         sourceCodePro.variable,
         sourceSans.className,
       )}

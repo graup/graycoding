@@ -109,8 +109,11 @@ html {
   @apply my-4;
 }
 
-.prose li p {
+.prose li p:first-of-type {
   @apply my-0;
+}
+.prose li p:nth-of-type(2) {
+  @apply mt-0;
 }
 
 .prose h1 {
@@ -157,7 +160,13 @@ html {
 }
 
 .prose blockquote {
-  @apply border-l-4 border-muted italic pl-4 my-4;
+  @apply border-l-4 border-muted pl-4 my-4;
+}
+.prose blockquote > p {
+  @apply italic my-4;
+}
+.prose blockquote cite {
+  @apply not-italic;
 }
 
 pre {

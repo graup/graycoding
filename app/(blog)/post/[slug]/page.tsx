@@ -3,6 +3,8 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/(blog)/utils";
 import { baseUrl } from "app/sitemap";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { content } from "app/(home)/content";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -96,6 +98,9 @@ export default function Page({ params }: { params: { slug: string } }) {
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
+      <aside className="prose rainbow border-t border-muted mt-12 text-sm opacity-80">
+        <MDXRemote source={content} />
+      </aside>
     </section>
   );
 }

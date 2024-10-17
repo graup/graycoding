@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkToc from "remark-toc";
 import { highlight } from "sugar-high";
 import React, { type ComponentProps, type ReactNode } from "react";
 import path from "path";
@@ -187,7 +188,7 @@ export function CustomMDX(props: ComponentProps<typeof MDXRemote>) {
         mdxOptions: {
           useDynamicImport: true,
           baseUrl: import.meta.url,
-          remarkPlugins: [],
+          remarkPlugins: [[remarkToc, { ordered: true }]],
           rehypePlugins: [
             rehypeMdxImportMedia({
               basePath: path.join(process.cwd(), "app", "(blog)", "_posts"),

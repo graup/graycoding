@@ -17,12 +17,12 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <aside className="mb-12 lg:sticky lg:top-2 bg-background/80 tracking-tight">
+    <aside className="mb-12 lg:sticky lg:top-0 bg-background/90">
       <nav
         className="flex flex-row items-center gap-4 relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
         id="nav"
       >
-        <h1 className="text-[2.5em] font-mono font-light uppercase leading-[1.5em]">
+        <h1 className="text-[2.5em] font-mono font-light uppercase tracking-tight leading-[1.5em]">
           <Link href="/">
             Paul{" "}
             <span className=" bg-[LightSlateGray] text-white -ml-[.5em]">
@@ -30,7 +30,7 @@ export function Navbar() {
             </span>
           </Link>
         </h1>
-        <div className="flex flex-row space-x-0 ml-auto font-mono text-sm gap-2">
+        <div className="flex flex-row space-x-0 ml-auto font-mono text-sm gap-2 tracking-tight">
           {Object.entries(navItems).map(([path, { name }]) => {
             return (
               <Link
