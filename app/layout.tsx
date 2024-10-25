@@ -65,7 +65,7 @@ export default function RootLayout({
       <head>
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
       </head>
-      <body className="antialiased max-w-2xl mx-4 mt-8 lg:mx-auto relative">
+      <body className="antialiased max-w-2xl mx-2 sm:mx-4 mt-4 sm:mt-8 lg:mx-auto relative">
         <main className="flex-auto min-w-0 mt-2 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}

@@ -62,7 +62,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             url: `${baseUrl}/tag/${tag.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Paul Grau",
             },
           }),
         }}
@@ -73,7 +73,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <article className="prose text-lg">
         <CustomMDX source={tag.content} />
       </article>
-      {!posts.length && <p>No posts found.</p>}
+      {!posts.length && <p>Sorry, no posts yet.</p>}
       <BlogPosts posts={posts} />
     </section>
   );

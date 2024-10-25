@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate, getBlogPosts } from "app/(blog)/utils";
+import { formatDate } from "app/(blog)/utils";
 
 export function BlogPosts({
   posts,
@@ -13,7 +13,7 @@ export function BlogPosts({
   }>;
 }) {
   return (
-    <div>
+    <div className="grid grid-cols-[max-content_auto] gap-x-6 gap-y-2">
       {posts
         .sort(
           (a, b) =>
@@ -23,17 +23,15 @@ export function BlogPosts({
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
+            className="contents"
             href={`/post/${post.slug}`}
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 dark:text-neutral-400 w-[150px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {post.metadata.title}
-              </p>
-            </div>
+            <span className="text-muted-foreground tabular-nums">
+              {formatDate(post.metadata.publishedAt, false)}
+            </span>
+            <span className="[:hover_>_&]:underline decoration-muted underline-offset-3 decoration-[0.1em] title">
+              {post.metadata.title}
+            </span>
           </Link>
         ))}
     </div>
