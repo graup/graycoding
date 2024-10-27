@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {tag.metadata.title}
       </h1>
-      <article className="prose text-lg">
+      <article className="prose sm:text-lg">
         <CustomMDX source={tag.content} />
       </article>
       {!posts.length && <p>Sorry, no posts yet.</p>}

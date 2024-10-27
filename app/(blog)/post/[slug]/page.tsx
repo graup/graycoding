@@ -98,7 +98,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
-      <aside className="prose rainbow border-t border-muted mt-12 text-sm opacity-80">
+      <aside className="prose rainbow border-t border-muted mt-12 text-sm opacity-80 pt-2">
         <MDXRemote source={content} />
       </aside>
     </section>

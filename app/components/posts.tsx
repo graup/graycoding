@@ -13,7 +13,7 @@ export function BlogPosts({
   }>;
 }) {
   return (
-    <div className="grid grid-cols-[max-content_auto] gap-x-6 gap-y-2">
+    <div className="grid sm:grid-cols-[max-content_auto] gap-x-6 gap-y-1 sm:gap-y-2">
       {posts
         .sort(
           (a, b) =>
@@ -26,10 +26,10 @@ export function BlogPosts({
             className="contents"
             href={`/post/${post.slug}`}
           >
-            <span className="text-muted-foreground tabular-nums">
+            <span className="text-muted-foreground tabular-nums text-sm sm:text-base">
               {formatDate(post.metadata.publishedAt, false)}
             </span>
-            <span className="[:hover_>_&]:underline decoration-muted underline-offset-3 decoration-[0.1em] title">
+            <span className="[:hover_>_&]:underline decoration-muted underline-offset-3 decoration-[0.1em] title mb-4 sm:mb-0">
               {post.metadata.title}
             </span>
           </Link>

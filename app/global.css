@@ -17,7 +17,7 @@
     --color-background: #111111;
     --color-foreground: #f0f0f0;
     --color-muted: #333333;
-    --color-muted-foreground: #cccccc;
+    --color-muted-foreground: #888;
   }
 }
 
@@ -71,7 +71,7 @@ html {
 }
 
 .prose {
-  @apply text-foreground;
+  @apply text-foreground hyphens-auto;
 }
 
 .prose a {
@@ -106,7 +106,7 @@ html {
 }
 
 .prose p, .prose li:has(> p), .prose li > img {
-  @apply my-4;
+  @apply mt-2 mb-4;
 }
 
 .prose li p:first-of-type {
@@ -144,12 +144,6 @@ html {
   @apply list-decimal pl-6;
 }
 
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
 .prose figcaption {
  @apply text-sm text-center -mt-2 mb-6 text-muted-foreground italic;
  @apply border-b border-muted;
@@ -160,7 +154,7 @@ html {
 }
 
 .prose blockquote {
-  @apply border-l-4 border-muted pl-4 my-4;
+  @apply border-l-4 border-muted pl-4 pr-2 mt-2 mb-4;
 }
 .prose blockquote > p {
   @apply italic my-4;

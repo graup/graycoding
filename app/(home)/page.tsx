@@ -8,11 +8,11 @@ export default function Page() {
 
   return (
     <>
-      <section className="prose rainbow">
+      <section className="prose rainbow pr-12">
         <MDXRemote source={content} />
       </section>
       <section className="mt-8">
-        <h2 className="text-xl">Latest Writing</h2>
+        <h2 className="text-xl">Latest Articles</h2>
         <div className="my-4 mb-8">
           <BlogPosts posts={allBlogs} />
         </div>
