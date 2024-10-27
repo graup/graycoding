@@ -106,7 +106,11 @@ html {
 }
 
 .prose p, .prose li:has(> p), .prose li > img {
-  @apply mt-2 mb-4;
+  @apply my-4;
+}
+
+.prose > p:first-child {
+  @apply mt-2;
 }
 
 .prose li p:first-of-type {
