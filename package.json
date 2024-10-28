@@ -21,6 +21,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype-mdx-import-media": "^1.2.0",
+    "remark-gfm": "^4.0.0",
     "remark-toc": "^9.0.0",
     "sugar-high": "^0.6.0",
     "tailwindcss": "4.0.0-alpha.13",
