@@ -1,1 +1,15 @@
 Thoughts about graphs
+
+Graphs are one of my favorite data structures ever.
+
+They are a beautiful representation of many complex real world processes.
+Cooking recipes, assembly instructions, and software dependencies
+can all be described as a series of steps that need to be taken in a specific order.
+This order is not just linear (step 1, step 2, step 3), but has inter-dependencies (step 3 follows 1 and 2; or both step 2 and 3 follows 1).
+
+Such graphs are almost always "directed", i.e. there is a temporal or logical sequence to the steps.
+In technical systems, sometimes directed graphs can be constrained to be acyclical, then called Directed Acyclic Graph (DAG).
+
+But in the real world most graphs aren't acyclical. Flows of data, maps of complex tasks, and how people learn often have iterative components.
+You do step 1, 2, 3... and then step 1 again! This also happens in electronics, where a signal can be fed back into the system,
+creating a complex system that can have a stable equilibrium or osciliate over time.
