@@ -1,11 +1,11 @@
 ---
 title: "Graphs: Beautiful Representations of Our Complex World"
 publishedAt: "2024-11-15"
-summary: "An exploration of graphs as a beautiful representation of complex real world processes."
+summary: "An exploration of graphs as a beautiful representation of complex real world processes and user interface challenges."
 tags: ui
 ---
 
-Graphs are one of my favorite data structures ever—both on a technical and a visual level.
+Graphs are one of my favorite data structures—both on a technical and a visual level.
 
 They are a powerful representation of many complex real world processes.
 Cooking recipes[^1], assembly instructions, and software dependencies
@@ -15,40 +15,146 @@ This order is not just a linear list, but has inter-dependencies.
 (viz of step1 -> step 2 -> step 3 and then viz of something more complex)
 
 [^1]:
-    For example, in this paper by my colleagues at KAIST:
+    For example, my colleagues at KAIST encoded cooking recipes as graphs in their paper:
     [RecipeScape: An Interactive Tool for Analyzing Cooking Instructions at Scale](https://dl.acm.org/doi/abs/10.1145/3173574.3174025)
 
-Real-world graphs are almost always _directed_, i.e. there is a temporal or logical sequence to the steps (step 1 has to be done before step 2),
+Most real-world graphs are _directed_, i.e. there is a temporal or logical sequence to the steps (step 1 has to be done before step 2),
 or some kind of relationship between them (like connections in your social graph).
 
-In technical systems, sometimes directed graphs can be constrained to be acyclical, then called Directed Acyclic Graph (DAG).
+In technical systems, sometimes directed graphs can be constrained to be acyclical, then called a Directed Acyclic Graph (DAG).
 But in the real world most graphs aren't acyclical. Flows of data, maps of complex tasks, and how people learn often have iterative components.
 You do step 1, 2, 3... and then step 1 again! This also happens in electronics, where a signal can be fed back into the system,
 creating a complex system that can have a stable equilibrium or osciliate over time.
 
-examples
+Examples of such complex systems include:
 
-- cooking recipes
-- assembly instructions
-- software dependencies
-- project managaement
-- data flows
-- electronics
-- learning a skill
+- Cooking recipes
+- Assembly instructions
+- Software dependencies
+- Project management
+- Data flows
+- Electronics
+- Learning a skill
 
-graph UI problems
+## User Interaction
 
-big graphs are difficult to lay out and navigate
-in fact, graphs are most useful when they are of medium size and complexity:
-too simple, and they could be represented as a list or table; too complex, and they become unreadable.
-so we need to pick the right level of abstraction for the task at hand.
+Technically, graphs have no limits.
+Part of their algorithmic beauty is that you can search, traverse, and analyze even the most complex graphs with thousands of nodes.
 
-zooming out
+But humans are not computers, and we have limits in how much information we can process at once.
+This is a challenge when designing user interfaces with graphs.
 
-pagination
+In fact, graphs are most useful when they are of medium size and complexity:
+too simple, and they could be better represented as a list or table; too complex, and they become unreadable.
 
-filtering graph data
-ill-defined.. you need to think about what this means.
-maybe compression is a better way to look at it
+(interactive viz of graphs with different sizes and shapes so the reader can understand the problem.)
 
-searching
+Laying out huge graphs also stretches the ability of graph layout engines.
+To find a suitable layout, the algorithm needs to optimize for many factors, like minimizing edge crossings, keeping nodes close together that are connected, and making the graph as awhole fit into the available space.
+
+So what can we do when we have a large graph that we want to show to the user?
+
+### Zooming and Levels of Detail
+
+One effective technique is to allow zooming.
+Users can zoom out to see the overall structure of the graph, or zoom in to see more details.
+
+We can also provide different levels of information depending on the zoom level.
+At a high level, the graph can show a simplified overview, perhaps with nodes grouped into clusters or communities.
+As users zoom in, more details become visible. Individual nodes and edges can be explored, and labels or additional metadata can be displayed.
+
+This approach leverages semantic zooming, where the representation of the data changes meaningfully at different zoom levels—not just in size but in the amount and type of information shown.
+
+### Layers
+
+Layers allow us to separate different types of information within the same graph.
+By organizing nodes and edges into layers, users can toggle the visibility of certain aspects of the graph.
+
+For example:
+
+- Functional Layers: In a software dependency graph, one layer could show module dependencies, while another shows class hierarchies.
+- Temporal Layers: In project management graphs, layers can represent different time periods or phases of a project.
+- Thematic Layers: In data flow graphs, layers can separate different types of data or processes.
+
+By using layers, users can focus on the aspects of the graph that are relevant to them at the moment, reducing clutter and cognitive load.
+
+### Pagination
+
+While not as common with graphs as with lists or tables, pagination can be adapted to graph interfaces by breaking down the graph into manageable chunks.
+
+- Sequential Navigation: Users can navigate through subsets of the graph, such as viewing one cluster or community at a time.
+- Step-by-Step Exploration: In process flows or workflows, pagination can guide users through each stage sequentially.
+
+Pagination helps prevent information overload by not displaying the entire graph at once, but it requires careful design to maintain context and continuity.
+
+Pagination can be difficult to define and implement technically.
+How do you chunk a graph into pages? How do you update the layout when the user navigates to the next page?
+
+I think this is an unsolved problem. If you have any ideas, I'd love to hear them!
+
+### Filtering and Compression
+
+Filtering is straightforward with tabular data.
+We define a filter criteria and hide columns or rows that don't match.
+This is an easy way to reduce the amount of information shown to the user.
+
+But filtering in graphs is not very well defined.
+You can't just hide some nodes or edges because that fundamentally changes the structure of the graph.
+
+(demo of removing a node without any other processing)
+
+One way to deal with this is _compression_.
+That is, we can group nodes or edges together and simplify the graph's structure this way.
+This reduces complexity while preserving essential relationships.
+
+Grouping nodes is similar to clustering. We can define a set of nodes that are related in some way and then show them as a single node in the graph.
+
+(demo of grouped node)
+
+Grouping edges is similar to skipping nodes. We can define a set of edges that are related in some way and then show them as a single edge in the graph, removing all the nodes on its path.
+
+(demo of grouped edge)
+
+- Hierarchical Graphs: By representing the graph hierarchically, we can show parent-child relationships, making it easier to navigate complex systems.
+- Collapsible Clusters: Users can expand or collapse clusters to explore the graph at their own pace.
+
+### Search and Navigation
+
+In large graphs, search functionality becomes crucial.
+
+- Node Search: Users can search for nodes by name or attribute, then focus on those nodes within the graph.
+- Path Finding: Tools that highlight the path between two nodes can help users understand relationships.
+- Navigation Controls: Providing controls for panning, zooming, and resetting the view enhances usability.
+
+Effective search and navigation tools empower users to find the information they need quickly.
+
+### Multi-View Interfaces
+
+Combining different representations and views can help users understand complex graphs.
+
+- Overview + Detail: Present an overview of the entire graph alongside a detailed view of a selected area.
+- Linked Views: Interactions in one view (e.g., selecting a node in a list) can update another view (e.g., highlighting that node in the graph).
+- Synchronized Navigation: Panning or zooming in one view can reflect in another, keeping different perspectives connected.
+
+Multi-view interfaces provide context while allowing in-depth exploration.
+
+### Alternative Representations
+
+Sometimes, representing a graph visually as nodes and edges isn’t the most effective approach.
+
+- Matrix Representations: Adjacency matrices can represent graphs in a grid format, which can be more scalable for large graphs.
+- Circular or Radial Layouts: These layouts can be effective for certain types of graphs, like hierarchical data or social networks.
+- Heatmaps and Other Visualizations: Depending on the data, other visualization techniques might convey the information more effectively.
+- List: Sometimes, a simple list of nodes or edges can be more readable than a graph. Just because your data is stored as a graph doesn't mean it always has to be displayed as one.
+
+Exploring alternative representations can make complex graphs more approachable and highlight different aspects of the data.
+
+## Conclusion
+
+Graphs are awesome. Modeling information as a graph is a great fit for many real-world problems and allows for powerful algorithms.
+
+But when it comes to user interfaces, we need to be careful. Graphs can quickly become overwhelming and hard to understand.
+
+Graphs require both technical and design skills to get right.
+It's not just about the algorithms that lay out the graph, but also about how we present the graph to the user.
+By employing thoughtful UI techniques we can make complex graphs more accessible and meaningful to users.
