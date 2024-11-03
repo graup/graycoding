@@ -110,6 +110,7 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  hr: () => <hr className="text-foreground/50 my-8 max-w-[200px] mx-auto" />,
 };
 
 type TreeNode = {
