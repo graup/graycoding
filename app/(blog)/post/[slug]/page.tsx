@@ -68,11 +68,11 @@ export default function Page({ params }: { params: { slug: string } }) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+              : undefined,
+            url: `${baseUrl}/post/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Paul Grau",
             },
           }),
         }}

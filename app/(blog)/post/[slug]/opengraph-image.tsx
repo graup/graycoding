@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const alt = "About Acme";
+export const alt = "Post on graycoding.com";
 export const size = {
   width: 1200,
   height: 630,
