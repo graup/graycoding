@@ -1,0 +1,36 @@
+# Evolving Design Decisions
+
+> As an organization grows and evolves, it’s not unusual for some of its subdomains to morph from one type to another.
+
+![https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_1101.png](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_1101.png)
+
+> As time goes by, documentation often becomes stale, people who were working on the original design leave the company,
+> and new functionality is added in an ad hoc manner until, at one point, the codebase gains the dubious status of a legacy system.
+> **It’s vital to prevent such degradation of domain knowledge proactively.**
+>
+> <cite>
+>   – Vlad Khononov, [Learning Domain-Driven
+>   Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/)
+> </cite>
+
+Here are some heuristics to help with that:
+
+- When a subdomain’s functionality is expanded, try to identify more finer-grained subdomain boundaries that will enable you to make better design decisions.
+- Don’t allow a bounded context to become a “jack of all trades.” Make sure the models encompassed by bounded contexts are focused to solve specific problems.
+- Make sure your aggregates’ boundaries are as small as possible. Use the heuristic of strongly consistent data to detect possibilities to extract business logic into new aggregates.
+
+Evolving Design Decisions
+
+    as an organization grows, it’s not unusual for subdomains to morph from one type to another.
+
+— vlad khononov, learning domain-driven design
+
+subdomains and models aren’t static. business needs change, teams evolve, and yesterday’s core domain might become today’s supporting subdomain—or vice versa. if you’re not careful, this can lead to bloated contexts, stale documentation, and the dreaded “legacy system” trap.
+
+to prevent that, proactive evolution is key. here are some heuristics:
+
+    •	refine subdomains as they expand: when functionality grows, look for opportunities to split into more fine-grained subdomains for better decision-making.
+    •	keep bounded contexts focused: don’t let them become “jack of all trades.” each context should tackle a specific problem.
+    •	minimize aggregate boundaries: keep aggregates small and use strongly consistent data as a guide to extract business logic into new ones.
+
+staying vigilant about these principles ensures your design evolves gracefully, avoiding unnecessary complexity and keeping your system aligned with business goals.

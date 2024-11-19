@@ -75,6 +75,10 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "(blog)", "_posts"));
 }
 
+export function getBlogPostDrafts() {
+  return getMDXData(path.join(process.cwd(), "app", "(blog)", "_drafts"));
+}
+
 export function getTags() {
   return getMDXData(path.join(process.cwd(), "app", "(blog)", "_tags"));
 }

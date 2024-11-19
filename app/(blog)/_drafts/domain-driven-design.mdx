@@ -1,26 +1,46 @@
 ---
-title: "Domain Driven Design as a Bridge Between Design and Engineering"
-publishedAt: "2024-11-15"
+title: "Domain Driven Design: Building a Common Language for Your Team"
+publishedAt: "2024-11-24"
 summary: "Domain Driven Design (DDD) is a methodology pioneered by engineers to improve communication among stakeholders."
 tags: product
 ---
 
-Product managers write Google docs.
-Designers draw in Figma.
-Engineers create diagrams and code.
-Marketing creates campaigns in Hubspot.
-Customer support writes in Zendesk.
+Communication among different stakeholders is hard.
+It's a common reason for project failures, missed deadlines, and misaligned expectations.
+In this article, I’ll explore how Domain Driven Design can bridge these gaps and bring clarity to the chaos.
+
+## Contents
+
+## The birth of Domain Driven Design
+
+Product managers write PRDs in Linear.
+Designers turn ideas into Figma designs,
+brought to life by engineers.
+Marketing spins campaigns in Hubspot.
+Customer support talks to customers in Intercom.
+
 How do we make sure that everyone is on the same page regarding our product?
-That the design and implementation reflect the user's mental model?
+That design and implementation reflect the user's (and our own) mental model?
 That everyone from CEO to support uses the same language as the UI and our users?
 
-Domain Driven Design (DDD) is a methodology pioneered by engineers to improve communication among stakeholders.
-It also is a set of software architecture patterns, but that's not what I'm talking about here.
-I see it first and foremost as a way to bridge the gap between design and engineering.
+It's all about communication—and communication is hard.
 
-How does it work?
+There's no silver bullet, no magical framework or standard tool.
+Instead, we get a parade of competing mythodologies, each championed by a different group.
 
-It's all about a shared domain understanding.
+One day, a PM showed up with _Jobs to be Done_.
+Designers waved a _Design Thinking_ handbook.
+The CEO was still preaching _Lean Startup_.
+
+Then engineers said, "Hold up—let's get practical."
+And that's how Domain Driven Design (DDD) was born.
+
+DDD is an engineering-driven approach to improve communication among stakeholders.
+It's also a set of software architecture patterns, but that's not what I'm talking about today.
+
+To me, DDD is about bridhing the gap between design and engineering. How?
+
+Shared domain understanding.
 
 ## Start with business strategy
 
@@ -32,97 +52,111 @@ It's all about a shared domain understanding.
 >   Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/)
 > </cite>
 
-A good exercise you can start with is to define the business domain and subdomains.
-Subdomains can be useful to organize your team and architecture around.
+A great starting point is to nail down your business domain and its subdomains.
 
-- **Business Domain**: main area of activity
-  - FedEx: courier delivery; Starbucks: coffee shops; Walmart: retail
-  - This may be obvious to you but different people on your team may have different ideas about what the business does.
-- **Subdomain**: fine-grained area of business activity. what are all the parts that make up the business?
-  - Core subdomains: differentiators, high cost of switching, competitive advantage, strategy, secret sauce.
-  - Generic subdomains: important parts but possible to use battle-tested generic implementations instead of building your own.
-  - Supporting subdomains: non-generic, but also no competitive advantage; e.g. simple CRUD parts. Ideally can be turned into generic subdomains.
-  - The focus of business efforts should be on core subdomains.
-  - Subdomains don’t always need to involve your own technical systems. It can also be a manual process or a third-party service.
-  - How to differentiate
-    - Would someone pay for it on its own? → Core subdomain
-    - Would it be simpler and cheaper to hack your own implementation, rather than integrating an external one? → Supporting subdomain
-      ![https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_0101.png](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_0101.png)
-  - When to stop decomposing subdomains into smaller parts?
-    - Identify sets of coherent use cases that operate on the same data
+The **business domain** is your main gig.
+Think FedEx → courier delivery; Starbucks → coffee shops; Walmart → retail.
+
+Seems obvious, right? But ask your team what the business really does, and you might get wildly different answers.
+If you’re not aligned on this, congrats—you’ve got bigger problems than just scattered domain knowledge.
+
+Now, let's zoom in. **Subdomains** break the business down into finer-grained areas of activity. They come in three flavors:
+
+- Core Subdomains: Your secret sauce, the stuff that makes your business special. Expensive to replace and central to your strategy.
+- Generic Subdomains: Important but standard. Don’t reinvent the wheel—plug in battle-tested third-party solutions here.
+- Supporting Subdomains: Necessary but not game-changing. Think basic CRUD systems. Ideally, you’ll simplify or outsource these over time, turning them into generic subdomains.
+
+If you couldn’t tell, the main focus of business efforts should be on core subdomains.
+
+How do you know which is which? Ask yourself:
+
+- Would someone pay for this on its own? → Core Subdomain
+- Would it be cheaper and easier to hack your own implementation, rather than integrating an external one? → Supporting Subdomain
+
+Keep in mind that not all subdomains need to involve your own systems. Some might run on manual processes or third-party services.
+
+Once you’ve mapped out your subdomains, try breaking them down further.
+Stop when you hit coherent sets of use cases operating on the same data.
+Go any deeper, and you’re just adding complexity for no good reason.
 
 ## Ubiquitous Language
 
-Traditional software development lifecycle implies top-down _translations_
-(domain knowledge → analysis model → requirements → system design → source code)
+Once you have a good overall grasp of what your business does, it’s time to get everyone speaking the same language. Enter Ubiquitous Language.
 
-A Ubiquitous Language is instead defined through _discovery_ among domain experts.
-Domain experts here really are all stakeholders of your business in any way related to your product.
-That can include management, support, engineers, designers, users, and others.
-It is crucial that not any one group defines the language on their own.
+Traditional software development lifecycles work like a giant game of telephone:
+Domain knowledge → analysis model → requirements → system design → source code.
+Every step introduces noise, misunderstandings, and wasted effort.
 
-The Ubiquitous Language is the common language of the business, the language of the user – and also the language of the code.
+Ubiquitous Language flips the script.
+Instead of top-down translations, it emerges through discovery—a collaborative process involving all stakeholders:
+management, support, engineers, designers, even users. no single group owns the language; it’s built together.
 
-Try to avoid technical jargon, ambiguous or synonymous terms, implicit assumptions, and extraneous details.
+The Ubiquitous Language is the common language of the business, the language of the user–and also the language of the code.
+
+**How to build a Ubiquitous Language?**
+
 Use whatever tool you have at hand to document the language but choose one that is accessible by everyone involved.
 
-Keep in mind that "ubiquitous" language does _not_ mean "universal".
+Ditch the technical jargon, any ambiguous or synonymous terms, and implicit assumptions.
 
-Don't try to make one model fit everything. It will be ineffective.
-Don't make it work by making terms more complex. It will increase cognitive load and make it more difficult to align implementation with the ubiquitous language.
+Keep in mind that "ubiquitous" does _not_ mean "universal".
 
-It's okay for different domain experts to different models of the same business domain.
-The model boundaries are called _bounded contexts_ in DDD.
-While subdomains are discovered, **bounded contexts are designed.**
-That means a conscious decision depending on what makes sense for the organization.
-They also often translate naturally into implementation scopes and ownership (e.g. one team per bounded context).
+Don't try to make one model fit everything. It'll either get bloated or too abstract, killing clarity.
+
+Instead, break things up into _bounded contexts_—clearly defined scopes where the language and model apply.
+
+Here’s the key: while subdomains are discovered, bounded contexts are designed.
+This is a deliberate process based on what makes sense for your organization.
+
+Bounded contexts also map neatly to implementation and ownership: in its purest form, you might have one team per context, managing their delineated parts of the system.
 
 ## EventStorming
 
-Despite its "product-y" looking spelling, EventStorming is just a low-tech, high-touch group activity with the aim of discovering and sharing domain knowledge.
+Despite its "product-y" looking spelling, EventStorming is just a low-tech, high-impact group activity
+designed to uncover and share domain knowledge. Think sticky notes, whiteboards, and lots of collaboration.
 
-Ideally you do this in person with a whiteboard and sticky notes. But for remote teams, tools like Excalidraw or Miro can work as well.
+Ideally you do this in person. But if your team is remote, tools like Excalidraw or Miro can work as well.
+
+I like to kick off an EventStorming session as soon as we've identified the subdomain we are tackling and its key features.
+Consider this part of the design process for major features or new products.
+This could be owned by a PM, designer, or engineer.
+Given its rather technical nature, engineers often lead, but involving other perspectives is a must.
+
+The goal is twofold:
+
+1. a visual representation of the domain model which can be used for the next steps.
+2. (more importantly) a shared understanding of the domain across the team.
+
+Here are the elements you can add to the board, in this order:
+
+1. Unstructured Exploration: brainstorming of domain events (in past tense). Orange sticky notes
+2. Timelines: sequence events, starting with the “happy path”, then add alternative scenarios.
+3. Pain Points: bottlenecks, manual steps that require automation, or missing domain knowledge. Rotated pink sticky notes
+4. Pivotal Events: major business events indicating a change in context or phase. Mark with vertical bars
+5. Commands: actions that trigger events or flows. Blue sticky notes
+6. Policies: automated commands triggered by specific events. Purple sticky notes
+7. Read Models: data views that actors use to decide on commands. Green sticky notes.
+8. External Systems: dependencies outside your domain. Pink sticky notes.
+9. Aggregates: clusters of domain objects with consistent state. Draw large boxes with marker.
+10. Bounded Contexts: map out where specific language and models apply. The largest boxes.
+
+You can take breaks or stop at any point, but the more detail you discover, the better.
 
 **Here is an Excalidraw template I created. Feel free to use it for your sessions.**
 
-I like having an EventStorming session as soon as the overall subdomain we are working on and its main features becomes clear.
+EventStorming isn’t just about filling a board with sticky notes—it’s about sparking conversations and aligning your team around a shared understanding.
+By the end, you’ll not only have a clearer picture of your domain but also a stronger, more cohesive language to describe it.
+And as a bonus, you’ll likely uncover gaps, opportunities, and potential system designs that might have otherwise stayed hidden.
 
-The outcome of a session is on the one hand a visual representation of the domain model,
-but maybe more importantly, it is a shared understanding of the domain among all stakeholders.
+## Conclusion
 
-Here are the elements you can add to the board:
+Domain Driven Design isn’t just about system architecture—it’s about creating a shared understanding across your entire team.
+From identifying subdomains to building a ubiquitous language through collaborative practices like EventStorming,
+DDD helps align stakeholders and ensures your product reflects the real-world needs of its users.
 
-1. Unstructured Exploration: brainstorming of domain events (described in past tense). Orange sticky notes
-2. Timelines: organize events in order, starting with “happy path”, then adding alternative scenarios
-3. Pain Points: identify bottlenecks, manual steps that require automation, missing documentation, or missing domain knowledge. Rotated pink sticky notes
-4. Pivotal Events: identify significant business events indicating a change in context or phase. Mark with vertical bar
-5. Commands: describe what triggered the event or flow of events. Blue sticky notes
-6. Policies: when commands are automatically executed when a specific domain event occurs. Purple sticky notes
-7. Read Models: the view of data within the domain that the actor uses to make a decision to execute a command. Green sticky notes.
-8. External Systems: Pink sticky notes.
-9. Aggregates
-10. Bounded Contexts
-
-## Evolving Design Decisions
-
-> As an organization grows and evolves, it’s not unusual for some of its subdomains to morph from one type to another.
-
-![https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_1101.png](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781098100124/files/assets/lddd_1101.png)
-
-> As time goes by, documentation often becomes stale, people who were working on the original design leave the company,
-> and new functionality is added in an ad hoc manner until, at one point, the codebase gains the dubious status of a legacy system.
-> **It’s vital to prevent such degradation of domain knowledge proactively.**
->
-> <cite>
->   – Vlad Khononov, [Learning Domain-Driven
->   Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/)
-> </cite>
-
-Here are some heuristics to help with that:
-
-- When a subdomain’s functionality is expanded, try to identify more finer-grained subdomain boundaries that will enable you to make better design decisions.
-- Don’t allow a bounded context to become a “jack of all trades.” Make sure the models encompassed by bounded contexts are focused to solve specific problems.
-- Make sure your aggregates’ boundaries are as small as possible. Use the heuristic of strongly consistent data to detect possibilities to extract business logic into new aggregates.
+Once you recognize that software development is, at its core, a communication exercise,
+frameworks like DDD start to feel less like overhead and more like a lifeline.
+It won’t solve every problem, but it can make the journey a little smoother—and maybe even a little fun.
 
 ## Further Reading
 
