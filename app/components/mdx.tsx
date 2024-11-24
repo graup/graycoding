@@ -190,7 +190,10 @@ export function CustomMDX(props: ComponentProps<typeof MDXRemote>) {
         mdxOptions: {
           useDynamicImport: true,
           baseUrl: import.meta.url,
-          remarkPlugins: [[remarkToc, { ordered: true }], remarkGfm],
+          remarkPlugins: [
+            [remarkToc, { ordered: true, maxDepth: 2 }],
+            remarkGfm,
+          ],
           rehypePlugins: [
             rehypeMdxImportMedia({
               basePath: path.join(process.cwd(), "app", "(blog)", "_posts"),
