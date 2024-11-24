@@ -1,0 +1,42 @@
+---
+title: "How to design software architecture with EventStorming (Domain Driven Design)"
+publishedAt: "2024-11-24"
+summary: ""
+tags: product
+---
+
+## EventStorming
+
+Despite its "product-y" looking spelling, EventStorming is just a low-tech, high-impact group activity
+designed to uncover and share domain knowledge. Think sticky notes, whiteboards, and lots of collaboration.
+
+Ideally you do this in person. But if your team is remote, tools like Excalidraw or Miro can work as well.
+
+I like to kick off an EventStorming session as soon as we've identified the subdomain we are tackling and its key features.
+Consider this part of the design process for major features or new products.
+This could be owned by a PM, designer, or engineer.
+Given its rather technical nature, engineers often lead, but involving other perspectives is a must.
+
+The goal is twofold:
+
+1. a visual representation of the domain model which can be used for the next steps.
+2. (more importantly) a shared understanding of the domain across the team.
+
+Here are the elements you can add to the board, in this order:
+
+1. Unstructured Exploration: brainstorming of domain events (in past tense). Orange sticky notes
+2. Timelines: sequence events, starting with the “happy path”, then add alternative scenarios.
+3. Pain Points: bottlenecks, manual steps that require automation, or missing domain knowledge. Rotated pink sticky notes
+4. Pivotal Events: major business events indicating a change in context or phase. Mark with vertical bars
+5. Commands: actions that trigger events or flows. Blue sticky notes
+6. Policies: automated commands triggered by specific events. Purple sticky notes
+7. Read Models: data views that actors use to decide on commands. Green sticky notes.
+8. External Systems: dependencies outside your domain. Pink sticky notes.
+9. Aggregates: clusters of domain objects with consistent state. Draw large boxes with marker.
+10. Bounded Contexts: map out where specific language and models apply. The largest boxes.
+
+You can take breaks or stop at any point, but the more detail you discover, the better.
+
+## Further Reading
+
+- Khononov, Vlad. [Learning Domain-Driven Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/). O'Reilly, 2021.

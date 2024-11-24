@@ -17,7 +17,7 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <aside className="mb-6 sm:mb-12 lg:sticky lg:top-0 bg-background/90">
+    <aside className="mb-6 sm:mb-12 lg:sticky lg:top-0 bg-background/85 backdrop-blur-sm">
       <nav
         className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
         id="nav"

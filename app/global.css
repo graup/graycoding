@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 ::selection {
   background-color: #47a3f3;
@@ -15,18 +15,17 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #111111;
-    --color-foreground: #f0f0f0;
+    --color-foreground: #eaeaea;
     --color-muted: #333333;
     --color-muted-foreground: #888;
   }
 }
 
-
 :root {
   --default-font-family: var(--source-sans-font);
   --font-family-mono: var(--source-code-font);
   --default-mono-font-family: var(--font-family-mono);
-  
+
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -80,7 +79,7 @@ html {
 
 .prose .anchor:after {
   @apply text-muted-foreground;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -105,7 +104,9 @@ html {
   @apply font-medium;
 }
 
-.prose p, .prose li:has(> p), .prose li > img {
+.prose p,
+.prose li:has(> p),
+.prose li > img {
   @apply my-4;
 }
 
@@ -149,8 +150,8 @@ html {
 }
 
 .prose figcaption {
- @apply text-sm text-center -mt-2 mb-6 text-muted-foreground italic;
- @apply border-b border-muted;
+  @apply text-sm text-center -mt-2 mb-6 text-muted-foreground italic;
+  @apply border-b border-muted;
 }
 
 .prose figcaption p {
@@ -173,8 +174,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -192,11 +193,15 @@ table {
   text-wrap: pretty;
 }
 
-
 .rainbow em {
   font-style: normal;
 }
-.rainbow em:nth-child(1) { color: #F51365; }
-.rainbow em:nth-child(2) { color: #b33293; }
-.rainbow em:nth-child(3) { color: #813fba; }
-
+.rainbow em:nth-child(1) {
+  color: #f51365;
+}
+.rainbow em:nth-child(2) {
+  color: #b33293;
+}
+.rainbow em:nth-child(3) {
+  color: #813fba;
+}

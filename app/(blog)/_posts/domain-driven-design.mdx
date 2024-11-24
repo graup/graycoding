@@ -1,0 +1,173 @@
+---
+title: "Domain Driven Design: Building a Common Language for Your Team"
+publishedAt: "2024-11-24"
+summary: "Domain Driven Design (DDD) is a methodology pioneered by engineers to improve communication among stakeholders."
+tags: product
+---
+
+Communication gaps between stakeholders are one of the biggest reasons for project failures.
+In this article, I’ll explore how Domain Driven Design can bridge these gaps and bring clarity to the chaos.
+
+This is based on
+both the book [Learning Domain-Driven Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/) by Vlad Khononov,
+as well as my own experience working as a software engineer for 10+ years at several startups.
+
+## Contents
+
+## The birth of Domain Driven Design
+
+Product managers write PRDs in Linear.
+Designers turn ideas into Figma designs,
+brought to life by engineers.
+Marketing spins campaigns in Hubspot.
+Customer support talks to customers in Intercom.
+
+How do we make sure that everyone is on the same page regarding our product?
+That design and implementation reflect the user's (and our own) mental model?
+That everyone from CEO to support uses the same language as the UI and our users?
+
+It's all about communication—and communication is hard.
+
+There's no silver bullet, no magical framework or standard tool.
+Instead, we get a parade of competing mythodologies, each championed by a different group.
+
+One day, a PM showed up with _Jobs to be Done_.
+Designers waved a _Design Thinking_ handbook.
+The CEO was still preaching _Lean Startup_.
+
+Then engineers said, "Hold up—let's get practical."
+And that's how Domain Driven Design (DDD) was born.
+
+DDD is an engineering-driven approach to improve communication among stakeholders.
+It's also a set of software architecture patterns, but that's not what I'm talking about today.
+
+To me, DDD is about bridging the gap between design and engineering. How?
+
+Shared domain understanding.
+
+## Start with business strategy
+
+> To design and build an effective solution, you have to understand the problem.
+> To understand the problem, you have to understand the context within which it exists.
+>
+> <cite>
+>   – Vlad Khononov, [Learning Domain-Driven
+>   Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/)
+> </cite>
+
+A great starting point is to nail down your business domain and its subdomains.
+
+The **business domain** is your main gig.
+Think FedEx → courier delivery; Starbucks → coffee shops; Walmart → retail.
+
+Seems obvious, right? But ask your team what the business really does, and you might get wildly different answers.
+If you’re not aligned on this, congrats—you’ve got bigger problems than just scattered domain knowledge.
+
+Let’s use [Alvin](https://alvin.ai), where I work, as an example to illustrate.
+Alvin is in the business of "data warehouse automation"—we digest metadata of data warehouses and help customers with cost and data quality issues, as automatically as possible.
+
+### Breaking your business into subdomains
+
+Now that we know the main business domain, let's zoom in.
+**Subdomains** break the business down into finer-grained areas of activity. They come in three flavors:
+
+- **Core Subdomains:** Your secret sauce, the stuff that makes your business special. Expensive to replace and central to your strategy.
+
+  Here are two areas that make Alvin unique: our own query log parsing—something we do better than anyone else—and turning raw data into actionable recommendations.
+  We make sure that these systems are rock-solid and scalable.
+
+- **Supporting Subdomains:** Necessary but not game-changing. Think basic CRUD systems. Ideally, you’ll simplify or outsource these over time, turning them into generic subdomains.
+
+  For Alvin, this includes user management. We use Google OAuth for authentication but manage roles and permissions internally.
+  The product wouldn't work without it, but no customer will decide for or against Alvin because of it.
+
+- **Generic Subdomains:** Important but standard. Don’t reinvent the wheel—plug in battle-tested third-party solutions here.
+
+  Alvin uses [Flipt](https://www.flipt.io/) for feature flags. Feature flags are a crucial tool for controlled releases and trunk-based development,
+  but building it ourselves would be a waste of time.
+
+How do you know which is which? Ask yourself:
+
+- Would someone pay for this on its own? → Core Subdomain
+- Would it be cheaper and easier to hack your own implementation, rather than integrating an external one? → Supporting Subdomain
+
+Keep in mind that not all subdomains need to involve your own systems. Some might run on manual processes or third-party services.
+
+Once you’ve have a set of subdomains, try breaking them down further.
+Stop when you hit coherent sets of use cases operating on the same data.
+Go any deeper, and you’re just adding complexity for no good reason.
+
+## Ubiquitous Language
+
+Once you have a good overall grasp of what your business does, it’s time to get everyone speaking the same language. Enter Ubiquitous Language.
+
+Traditional software development lifecycles work like a giant game of telephone:
+Domain knowledge → analysis model → requirements → system design → source code.
+Every step introduces noise, misunderstandings, and wasted effort.
+
+Ubiquitous Language flips the script.
+Instead of top-down "translations", it emerges through discovery—a collaborative process involving all stakeholders:
+management, support, engineers, designers, even users. no single group owns the language; it’s built together.
+
+A Ubiquitous Language is the common language of the business, the language of the user–and also the language of the code.
+
+### Creating a Ubiquitous Language
+
+Just start writing or drawing in whatever tool you have at hand—but choose one that is accessible by everyone involved.
+
+Ditch the technical jargon, any ambiguous or synonymous terms, and implicit assumptions.
+Aim for clarity, precision, and consistency.
+
+Inconsistent terminology is a common source of confusion. Here’s an example to illustrate:
+
+Consider the term _organization_.
+In the context of a multi-tenant system, what do you call the entity that data and users belong to?
+Apart from _tenant_ (not a very user-friendly word), there are a myriad of words I've seen used to name this: _organization_ (sometimes abbreviated _org_), _account_, _company_, _team_, _workspace_.
+Sometimes you find two of them in the same codebase, the UI using a third one!
+
+While designing your systems, for every concept pick just one term that resonates with your users and your team—and use it consistently across the product and codebase.
+
+Keep in mind that "ubiquitous" does _not_ mean "universal"—there can be multiple languages for different parts of your business.
+Words can mean different things in different contexts.
+
+## Bounded contexts
+
+If you try to fit everything into one model, it'll either get bloated or too abstract, killing clarity.
+
+But it's natural that words have different meanings in different contexts.
+
+Take the word “bank.”
+In a financial context, it’s where you store money.
+In a geographical context, it’s the edge of a river.
+In aviation, it’s the tilt of an airplane during a turn.
+The term "bank" isn’t universally unique, but within a specific context, it has a precise, agreed-upon meaning.
+
+Similarly, you can separate your business into multiple _bounded contexts_—clearly defined scopes where the language and model apply.
+
+### Designing bounded contexts
+
+While subdomains are discovered, bounded contexts are designed.
+This process involves deliberate decisions about what makes sense for your organization.
+
+You can start from the subdomains you identified earlier. But you may find that you need to go more granular or combine multiple subdomains into one context.
+For instance, for some teams it might make sense to split a “billing” subdomain into “subscription management” and “payment processing,” another team might merge it into one “invoicing" context.
+
+Bounded contexts also map neatly to implementation and ownership.
+In an ideal setup, one team is responsible for each context and managing its delineated part of the system.
+
+In a future article I will show you another fun method to design bounded contexts, EventStorming.
+
+## Conclusion
+
+Domain Driven Design isn’t just about system architecture—it’s about creating a shared understanding across your entire team.
+From identifying subdomains to building a ubiquitous language,
+DDD helps align stakeholders and ensures your product reflects the real-world needs of its users.
+
+Once you recognize that software development is, at its core, a communication exercise,
+frameworks like DDD start to feel less like overhead and more like a lifeline.
+It won’t solve every problem, but it can make the journey a little smoother—and maybe even a little fun.
+
+## Further Reading
+
+- Khononov, Vlad. [Learning Domain-Driven Design](https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/). O'Reilly, 2021.
+- Stemmler, Khalil. [An Introduction to Domain-Driven Design (DDD)](https://khalilstemmler.com/articles/domain-driven-design-intro/). 2019

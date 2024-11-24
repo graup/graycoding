@@ -99,11 +99,11 @@ export default function Page({ params }: { params: { slug: string } }) {
         <CustomMDX source={post.content} />
       </article>
 
-      <aside className="prose rainbow border-t border-b border-muted mt-12 text-sm opacity-80 pt-2">
+      <aside className="prose rainbow border-t border-b border-muted mt-12 text-sm opacity-80 pt-4 pb-2">
         <MDXRemote source={content} />
       </aside>
 
-      <aside className="prose text-muted-foreground opacity-70 text-sm mt-8">
+      <aside className="prose text-muted-foreground opacity-70 text-sm mt-6">
         ⚙ AI Disclosure: I use GenAI to improve my writing.
         <br />I manually write outlines and main points I want to make, and then
         ask an LLM to offer critique.
