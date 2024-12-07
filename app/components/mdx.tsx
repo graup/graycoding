@@ -58,7 +58,7 @@ function Code({ children, ...props }: ComponentProps<"code">) {
   if (typeof children !== "string") {
     return <code {...props}>{children}</code>;
   }
-  let codeHTML = highlight(children ?? "");
+  const codeHTML = highlight(children ?? "");
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 

@@ -1,0 +1,176 @@
+---
+title: "Implementing Robust Filters for Data-Intensive UIs"
+publishedAt: "2025-01-01"
+summary: "Filters can be deceptively simple to build but surprisingly hard to get right. Here’s a deep dive into their complexity and a library to make them easier."
+tags: ui
+---
+
+If you’re working on a data-heavy app, you’ve definitely come across a need for filters.
+Early versions of your product might squeak by without them—good hierarchies with just a few tabs or a simple search might suffice.
+But as your product matures, filters become inevitable.
+(Let's be honest, every B2B app eventually becomes a dashboarding solution.)
+
+In this post, I’ll explore the technical challenges of building robust filters and how I’m developing an open-source TypeScript library inspired by Django to simplify the process.
+
+## Contents
+
+## The Slippery Slope of Filtering
+
+Filtering is one of those features that sneaks up on you.
+
+At first, your app might not need it.
+A small dataset is easy to scroll through.
+Users are happy with just a paginated table or a list view embedded in a understandable information hierarchy.
+Let's say you app has projects and projects have tasks: there might be a list of projects, and when you click on a project, you see its tasks. Easy, right?
+
+But as your product grows, so do the needs for making complex data accessible.
+Suddenly, users start asking for more ways to find the data they need for their use case:
+
+- “Can I see just the open issues? From all projects?”
+- “How about showing only items updated in the last 7 days?”
+
+Striving to keep your design simple (and implementation work minimal),
+you might initially reach for simple solutions: tabs to divide the data into rough categories—open vs. closed issues.
+A search bar for free-text queries.
+But eventually, you find yourself implementing date range pickers, dropdowns for categories, and dynamic filters tied to user-specific contexts.
+
+Here’s where the slippery slope gets dangerous:
+
+- Ad-hoc implementations: Filters are added one-off for each page instead of designing a reusable filtering mechanism.
+- Inconsistent UX: Different pages implement filters differently—some use dropdowns, others use chips, and a few rely on modals.
+- Fragmented Logic: Filter logic is scattered across your app, embedded in various components, schemas, or query builders.
+
+What started as a simple table has turned into a patchwork of filtering hacks that’s brittle, hard to maintain, and impossible to scale.
+Just one more filter! Just one more condition!
+
+This is where having a generic filtering pattern becomes invaluable.
+By abstracting the complexity into a consistent framework, you can avoid the pitfalls of ad-hoc implementations.
+Your users will also thank you for a more consistent and predictable experience.
+
+So what do we need to look out for when building a reusable framework?
+
+## The Hidden Complexity of Filters
+
+At first, filters seem straightforward: apply criteria to show a subset of items. But as you build them, complexity creeps in.
+
+### Serialization
+
+Filter queries must be URL-serializable so users can share or bookmark filtered views. Simple cases are easy:
+
+```
+/issues?status=open&assignee=john
+```
+
+But handling complex queries, like ranges or nested conditions, can quickly become a headache.
+How do you encode operators like “greater than” or “between”?
+How do you encode multiple values for a single filter like "status is open or closed"?
+You might say, let's not build something we don't need yet—but trust me, the day will come, and you'll wish you had a plan.
+
+### Transformation
+
+A serialized filter is useless without translating it into actionable queries. This could mean converting it into:
+
+- Database queries, like a WHERE clause or GraphQL expression
+- API parameters for a backend
+- Client-side filtering logic, like a function that filters an array of objects according to the filter query
+
+Where do you place this logic? How do you ensure it’s consistent across your app?
+
+### Filter Types and Dynamic Options
+
+Filters need to fit the data and context:
+
+- Date pickers for ranges
+- Dropdowns for categorical data with pre-defined options, like "status"
+- Free-text inputs for searches
+
+Each type needs tailored UI and definitions for labels, operators, and options.
+Often, options must be dynamic—e.g., showing only relevant “Assignees” for a selected project.
+
+## Introducing @dataready/filters
+
+In my many years of building data-intensive UIs, I've found that building filters from scratch can be time-consuming and error-prone.
+So I started working on an open-source library that abstracts away the complexity of filters and provides a simple API to build them.
+
+**@dataready/filters** is a TypeScript library designed to handle the heavy lifting of filter logic.
+Inspired by Django ORM and django-filter, it provides the tools you need to build robust, flexible filtering systems while leaving the application of filters entirely up to you.
+
+### Key Features
+
+For serialization, I chose a Django-inspired approach with powerful lookup paths (e.g., "age\_\_gt=18").
+It's really flexible and works well with native data structures like URLSearchParams.
+
+For evaluation, you define reusable filters that contain the logic to transform the user's filter expressions into whatever your app needs to evaluate the query.
+That could be SQL statements, API parameters, or client-side logic.
+
+Finally, we need some help preparing both filters and filter expressions to be rendered and manipulated by the UI—be that a simple form or a complex filter builder.
+
+Also, of course it's fully typed—you'll always know exactly what you're dealing with.
+
+### How It Works
+
+Here’s a typical workflow with @dataready/filters:
+
+1. Define Filters: Create filter objects describing how filter expressions are transformed into logic. Attach UI metadata like labels, operators, and options.
+1. Combine Filters: Group multiple filters into a FilterSet to declare which filters are available.
+1. Decode Queries: Parse URL query strings into filter expressions.
+1. Apply Filters: Transform expressions into logic (e.g., functions, SQL fragments).
+1. Evaluate: Apply the logic to your data.
+1. UI Integration: Display and interact with filters in your frontend.
+
+### Example: Evaluating Filters
+
+```ts
+import { createFilter, createFilterSet, decodeQuery } from "@dataready/filter";
+
+type MyObj = { age: number };
+const obj: MyObj = { age: 25 };
+
+// Define a filter
+const age = createFilter({
+  match({ lookup }) {
+    // Lookups support complex paths but here we just check the first part
+    return lookup.path.at(0) === "age";
+  },
+  transform({ lookup, value }) {
+    // In this example, we transform filter expressions into runtime filter functions
+    if (lookup.operator.name === "lt") {
+      return (obj: MyObj) => obj.age < Number(value);
+    }
+    if (lookup.operator.name === "gt") {
+      return (obj: MyObj) => obj.age > Number(value);
+    }
+    throw new Error("unsupported lookup expression");
+  },
+});
+
+// Define a filter set
+const filterSet = createFilterSet([age]);
+
+// Evaluate a query
+const query = decodeQuery("age__lt=30&age__gt=20");
+const appliedFilters = filterSet(query);
+
+// Apply all the filter functions
+const matches = appliedFilters.map(({ result }) => result(obj));
+const isMatch = matches.every(Boolean);
+console.log(isMatch); // true
+```
+
+Check out the [GitHub repository] for more examples and documentation.
+
+## Conclusion
+
+@dataready/filters bridges the gap between filter definition, query serialization, and UI integration. By focusing on reusable logic and flexibility, it provides the foundation for robust filtering systems while leaving application-specific decisions up to you.
+
+Ready to streamline your filters? Explore the library on [GitHub]. Contributions and feedback are welcome!
+
+## References
+
+https://www.aufaitux.com/blog/filter-ui-design/
+
+https://www.pencilandpaper.io/articles/ux-pattern-analysis-enterprise-filtering
+
+https://www.uxpin.com/studio/blog/filter-ui-and-ux/
+
+https://blog.logrocket.com/ux-design/filtering-ux-ui-design-patterns-best-practices
