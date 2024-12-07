@@ -90,7 +90,7 @@ html {
   @apply bg-muted/30 rounded-md overflow-auto py-4 px-5 text-sm;
 }
 
-.prose :not(pre) code {
+.prose :not(pre) > code {
   @apply px-1 py-0.5 text-sm bg-muted/60 rounded;
 }
 
@@ -106,7 +106,7 @@ html {
 
 .prose p,
 .prose li:has(> p),
-.prose li > img {
+.prose li > :is(img, pre) {
   @apply my-4;
 }
 
