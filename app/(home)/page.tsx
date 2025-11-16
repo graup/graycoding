@@ -8,7 +8,7 @@ export default function Page() {
 
   return (
     <>
-      <section className="prose rainbow pr-12">
+      <section className="prose rainbow sm:pr-12">
         <MDXRemote source={content} />
       </section>
       <section className="mt-8">
