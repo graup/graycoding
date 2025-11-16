@@ -5,13 +5,16 @@ const navItems = {
     name: "about",
   },
   "/tag/product": {
-    name: "product",
+    name: "#product",
   },
-  "/tag/ui": {
-    name: "ui",
-  },
+  //"/tag/ui": {
+  //  name: "#ui",
+  //},
   "/tag/global": {
-    name: "global",
+    name: "#global",
+  },
+  "/tag/misc": {
+    name: "#misc",
   },
 };
 
@@ -30,14 +33,14 @@ export function Navbar() {
             </span>
           </Link>
         </h1>
-        <div className="flex flex-row flex-wrap -ml-2 sm:ml-0 sm:justify-end sm:ml-auto font-mono text-sm gap-x-4 sm:gap-x-2 tracking-tight">
+        <div className="flex flex-row flex-wrap -mx-1 sm:justify-end sm:ml-auto font-mono text-sm gap-x-3 sm:gap-x-2 gap-y-2 tracking-tight">
           {Object.entries(navItems).map(([path, { name }]) => {
             return (
               <Link
                 key={path}
                 href={path}
                 data-name={name}
-                className="transition-all text-foreground/80 hover:text-foreground p-1 px-2 data-[name=about]:hidden data-[name=about]:sm:block"
+                className="transition-all text-foreground/80 hover:text-foreground p-1 px-2 border border-foreground/15 rounded-full hover:border-foreground/40"
               >
                 {name}
               </Link>
