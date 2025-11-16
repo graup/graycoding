@@ -107,9 +107,6 @@ export default function Page({ params }: { params: { slug: string } }) {
         ⚙ AI Disclosure: I use GenAI to improve my writing.
         <br />I manually write outlines and main points I want to make, and then
         ask an LLM to offer critique.
-        <br />I find this streamlines my process, letting me focus on the
-        overall argument and flow—especially considering English is not my
-        native language.
       </aside>
     </section>
   );
