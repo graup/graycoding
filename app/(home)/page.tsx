@@ -4,7 +4,7 @@ import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { content } from "./content";
 
 export default function Page() {
-  let allBlogs = getBlogPosts().slice(0, 5);
+  let allBlogs = getBlogPosts().slice(0, 10);
 
   return (
     <>
