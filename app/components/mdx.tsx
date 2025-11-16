@@ -73,13 +73,26 @@ function slugify(str: string) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
+function getChildrenTextLeaves(children: ReactNode): string[] {
+  let leaves: string[] = [];
+  React.Children.forEach(children, (child) => {
+    if (typeof child === "string") {
+      leaves.push(child);
+    } else if (React.isValidElement(child)) {
+      leaves.push(...getChildrenTextLeaves(child.props.children));
+    }
+  });
+  return leaves;
+}
+
 function createHeading(level: number) {
   const Heading = ({ children }: { children?: ReactNode }) => {
     if (!children) return null;
-    if (typeof children !== "string") {
-      throw new Error("Heading children should be a string");
-    }
-    let slug = slugify(children);
+    let slugText =
+      typeof children === "string"
+        ? children
+        : getChildrenTextLeaves(children).join(" ");
+    let slug = slugify(slugText);
     return React.createElement(
       `h${level}`,
       { id: slug },
