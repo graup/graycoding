@@ -33,7 +33,7 @@ export function Navbar() {
             </span>
           </Link>
         </h1>
-        <div className="flex flex-row flex-wrap -mx-1 sm:justify-end sm:ml-auto font-mono text-sm gap-x-3 sm:gap-x-2 gap-y-2 tracking-tight">
+        <div className="flex flex-row flex-wrap -mx-1 sm:justify-end sm:ml-auto sm:mr-0 font-mono text-sm gap-x-3 sm:gap-x-2 gap-y-2 tracking-tight">
           {Object.entries(navItems).map(([path, { name }]) => {
             return (
               <Link
