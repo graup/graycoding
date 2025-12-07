@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatDate, formatDateShort } from "app/(blog)/utils";
+import { Fragment } from "react";
 
 export function BlogPosts({
   posts,
@@ -21,7 +22,7 @@ export function BlogPosts({
             +new Date(a.metadata.publishedAt),
         )
         .map((post) => (
-          <>
+          <Fragment key={post.slug}>
             <span className="text-muted-foreground tabular-nums text-sm sm:text-base">
               {formatDateShort(post.metadata.publishedAt)}
             </span>
@@ -34,7 +35,7 @@ export function BlogPosts({
                 {post.metadata.title}
               </Link>
             </span>
-          </>
+          </Fragment>
         ))}
     </div>
   );

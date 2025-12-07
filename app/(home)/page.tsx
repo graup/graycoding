@@ -6,13 +6,13 @@ export default function Page() {
 
   return (
     <>
-      <section className="prose large !max-w-[1150px]">
-        <p className="overflow-hidden float-right mb-[-40px]  mr-[-60px]">
+      <section className="prose large !max-w-[1250px] overflow-hidden -mr-[0.75lh] pr-[0.75lh] ">
+        <p className="float-right mb-[-40px] translate-x-10 ">
           <img
             src="./shapes.png"
             width="450"
             height="450"
-            className="translate-x-10 -translate-y-4 invert-when-dark"
+            className="translate-x-1 -translate-y-2 invert-when-dark"
           />
         </p>
         <p>
