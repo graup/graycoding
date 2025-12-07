@@ -9,17 +9,17 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Paul Grau",
-    template: "%s - Paul Grau",
+    default: "HUMANLOOP",
+    template: "%s - HUMANLOOP",
   },
   description:
-    "Paul Grau, senior product engineer, writes about products, UI/UX, and working in a globalized world.",
+    "paul grau's creative engineering lab and writing about products, ui/ux, and working in a globalized world.",
   openGraph: {
-    title: "Paul Grau",
+    title: "HUMANLOOP",
     description:
-      "Paul Grau, senior product engineer, writes about products, UI/UX, and working in a globalized world.",
+      "Paul Grau, product engineer, writes about products, UI/UX, and working in a globalized world.",
     url: baseUrl,
-    siteName: "Paul Grau",
+    siteName: "HUMANLOOP",
     locale: "en_US",
     type: "website",
   },

@@ -19,16 +19,16 @@ export default function Page() {
           hi, i'm paul grau. this is my creative engineering lab focused on the
           feedback cycle between human intent and system architecture.
         </p>
-        <p className="ml-[14px]">
+        <p className="ml-[16px]">
           i translate vision into systems through domain modeling, ux
           exploration, specs that align stakeholders, and resilient scaffolding
           that scales.
         </p>
-        <p className="mx-[-10px] max-w-[760px]">
+        <p className="max-w-[760px]">
           erasing the gap between business, design, and engineering in complex
           environments like finops, dataops, and web3.
         </p>
-        <p className="ml-[130px]">
+        <p className="ml-[120px]">
           less handoffs,
           <br />
           more shared product understanding.
