@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   );
 
   return (
-    <section>
+    <section className="mt-2">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -67,9 +67,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {tag.metadata.title}
-      </h1>
       <article className="prose sm:text-lg">
         <CustomMDX source={tag.content} />
       </article>

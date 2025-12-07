@@ -1,0 +1,9 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g>
+<path  stroke-dasharray="310,100" d="M48.5 47L84.8475 26.8556C88.0271 25.0934 90 21.7444 90 18.1091L90 16C90 10.4771 85.5228 6 80 6L16 6C10.4772 6 6 10.4772 6 16L6 18.1968C6 21.7853 7.92286 25.0988 11.0386 26.8792L84.9614 69.1208C88.0771 70.9012 90 74.2147 90 77.8032L90 80C90 85.5228 85.5229 90 80 90L16 90C10.4772 90 6 85.5228 6 80L6 77.7336C6 74.1824 7.88342 70.8975 10.9482 69.1035L47 48" stroke="#2A2A2A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+<animate attributeName="stroke-dashoffset" from="205" to="-205" dur="3.5s" repeatCount="indefinite" />
+
+</path>
+</g>
+</svg>
+

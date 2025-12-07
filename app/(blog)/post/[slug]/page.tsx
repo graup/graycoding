@@ -54,7 +54,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <section>
+    <section className="mt-6">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -77,9 +77,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
+      <h1 className="title text-2xl tracking-tighter">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-muted-foreground flex flex-row gap-2">
           {formatDate(post.metadata.publishedAt)}
@@ -100,13 +98,12 @@ export default function Page({ params }: { params: { slug: string } }) {
       </article>
 
       <aside className="prose rainbow border-t border-b border-muted mt-12 text-sm opacity-80 pt-4 pb-2">
+        <p className="article-meta">
+          <a href="/" className="uppercase">
+            ∞ Humanloop
+          </a>
+        </p>
         <MDXRemote source={content} />
-      </aside>
-
-      <aside className="prose text-muted-foreground opacity-70 text-sm mt-6">
-        ⚙ AI Disclosure: I use GenAI to improve my writing.
-        <br />I manually write outlines and main points I want to make, and then
-        ask an LLM to offer critique.
       </aside>
     </section>
   );

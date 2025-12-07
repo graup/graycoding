@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { NavLink } from "./navLink";
 
 const navItems = {
   "/": {
@@ -7,47 +9,33 @@ const navItems = {
   "/tag/product": {
     name: "#product",
   },
-  //"/tag/ui": {
-  //  name: "#ui",
-  //},
-  "/tag/global": {
-    name: "#global",
+  "/tag/ops": {
+    name: "#ops",
   },
-  "/tag/misc": {
-    name: "#misc",
+  "/tag/library": {
+    name: "#library",
   },
 };
 
 export function Navbar() {
   return (
-    <aside className="mb-6 sm:mb-12 lg:sticky lg:top-0 bg-background/85 backdrop-blur-sm">
-      <nav
-        className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-        id="nav"
-      >
-        <h1 className="whitespace-nowrap text-[2em] sm:text-[2.5em] font-mono font-light uppercase tracking-tight leading-[1.5em]">
-          <Link href="/">
-            Paul{" "}
-            <span className=" bg-[LightSlateGray] text-white -ml-[.5em]">
-              Grau
-            </span>
-          </Link>
-        </h1>
-        <div className="flex flex-row flex-wrap -mx-1 sm:justify-end sm:ml-auto sm:mr-0 font-mono text-sm gap-x-3 sm:gap-x-2 gap-y-2 tracking-tight">
-          {Object.entries(navItems).map(([path, { name }]) => {
-            return (
-              <Link
-                key={path}
-                href={path}
-                data-name={name}
-                className="transition-all text-foreground/80 hover:text-foreground p-1 px-2 border border-foreground/15 rounded-full hover:border-foreground/40"
-              >
-                {name}
-              </Link>
-            );
-          })}
-        </div>
+    <header className="flex flex-col items-baseline max-w-[840px] sm:flex-row sm:justify-between">
+      <h1 className="tracking-tight text-[44px] font-medium lowercase [font-variant:small-caps] whitespace-nowrap">
+        <img
+          src="/loop.svg"
+          className="h-[0.5em] w-auto inline invert-when-dark"
+        />{" "}
+        Humanloop
+      </h1>
+      <nav className="flex gap-[0.5em] items-baseline flex-wrap text-base ">
+        {Object.entries(navItems).map(([path, { name }]) => {
+          return (
+            <NavLink key={path} href={path}>
+              {name}
+            </NavLink>
+          );
+        })}
       </nav>
-    </aside>
+    </header>
   );
 }

@@ -17,21 +17,11 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-muted-foreground md:flex-row md:space-x-4 md:space-y-0">
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-foreground"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="/rss.xml"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">rss</p>
-          </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-muted-foreground">© {new Date().getFullYear()}</p>
+    <footer className="mb-16 mt-8 text-base">
+      <p className="text-muted-foreground">
+        &copy; Humanloop OÜ. Registry № EE17231287.
+        <a href="mailto:hello@humanloop.ee">hello@humanloop.ee</a>.
+      </p>
     </footer>
   );
 }

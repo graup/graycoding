@@ -6,23 +6,29 @@
 }
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #333333;
+  --color-background: #fef9f4;
+  --color-foreground: #2a2a2a;
   --color-muted: #dddddd;
   --color-muted-foreground: #888888;
+  --color-link: #588b7e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #111111;
-    --color-foreground: #eaeaea;
+    --color-background: #181818;
+    --color-foreground: #fef9f4;
     --color-muted: #333333;
     --color-muted-foreground: #888;
+    --color-link: #77c7b4;
+  }
+
+  .invert-when-dark {
+    filter: invert(1);
   }
 }
 
 :root {
-  --default-font-family: var(--source-sans-font);
+  --default-font-family: "Figtree", sans-serif;
   --font-family-mono: var(--source-code-font);
   --default-mono-font-family: var(--font-family-mono);
 
@@ -53,15 +59,58 @@ html {
   min-width: 360px;
   @apply text-lg;
   @apply leading-relaxed;
+  @apply antialiased;
 }
 
+body {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+
+  font-size: 1.125em; /* 18px */
+
+  padding: .75lh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  body {
+    padding: 1.5lh;
+    font-size: 1.25em; /* 20px */
+  }
+}
+
+a[href] {
+  color: var(--color-link);
+  padding-inline: 2px;
+  transition: all .18s;
+  
+}
+a[href]:hover, a[aria-current=page] {
+  background-color: var(--color-link);
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a {
+  text-box: trim-both cap alphabetic;
+  padding-block: 4px;
+  line-height: 1;
+}
+
+
+
+h1 a {
+  color: inherit;
+}
+
+
 .prose .anchor {
-  @apply absolute invisible no-underline;
+  @apply absolute invisible;
 
   margin-left: -1em;
   padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
   cursor: pointer;
 }
 
@@ -71,11 +120,9 @@ html {
 
 .prose {
   @apply text-foreground hyphens-auto;
+  max-width: 860px;
 }
 
-.prose a {
-  @apply underline transition-all decoration-muted hover:decoration-muted-foreground underline-offset-3 decoration-[0.1em];
-}
 
 .prose .anchor:after {
   @apply text-muted-foreground;
@@ -126,7 +173,7 @@ html {
 }
 
 .prose h2 {
-  @apply text-xl font-semibold tracking-tight mt-6 mb-2;
+  @apply text-2xl font-semibold tracking-tight mt-10 mb-2;
 }
 
 .prose h3,
@@ -139,16 +186,16 @@ html {
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-8;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply list-decimal pl-8;
 }
 
 .prose figcaption {
   @apply text-sm text-center -mt-2 mb-6 text-muted-foreground italic;
-  @apply border-b border-muted;
+  @apply border-b border-muted bg-background;
 }
 
 .prose figcaption p {
@@ -163,6 +210,19 @@ html {
 }
 .prose blockquote cite {
   @apply not-italic;
+}
+
+@media (min-width: 1300px) {
+  #contents { display: none }
+  #contents + ol {
+    display: block;
+    position: sticky;
+    top: 30px;
+    margin-right: -440px;
+    margin-top: 24px;
+    width: 400px;
+    float: right;
+  }
 }
 
 pre {

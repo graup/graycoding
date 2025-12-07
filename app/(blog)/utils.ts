@@ -118,3 +118,12 @@ export function formatDate(date: string, includeRelative = false) {
 
   return `${fullDate} (${formattedDate})`;
 }
+
+export function formatDateShort(date: string) {
+  let targetDate = new Date(date);
+
+  return targetDate.toLocaleString("en-us", {
+    month: "short",
+    year: "numeric",
+  });
+}
