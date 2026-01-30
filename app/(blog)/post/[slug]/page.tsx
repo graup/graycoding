@@ -77,7 +77,10 @@ export default function Page({ params }: { params: { slug: string } }) {
           }),
         }}
       />
-      <h1 className="title text-2xl tracking-tighter">{post.metadata.title}</h1>
+      <h1 className="title tracking-tighter">{post.metadata.title}</h1>
+      {post.metadata.subTitle && (
+        <h2 className="subtitle mb-3">{post.metadata.subTitle}</h2>
+      )}
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-muted-foreground flex flex-row gap-2">
           {formatDate(post.metadata.publishedAt)}

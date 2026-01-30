@@ -114,6 +114,7 @@ h1 a {
   cursor: pointer;
 }
 
+
 .anchor:hover {
   @apply visible;
 }
@@ -121,6 +122,7 @@ h1 a {
 .prose {
   @apply text-foreground hyphens-auto;
   max-width: 860px;
+  line-height: 1.5;
 }
 
 
@@ -154,7 +156,7 @@ h1 a {
 .prose p,
 .prose li:has(> p),
 .prose li > :is(img, pre) {
-  @apply my-4;
+  @apply my-3;
 }
 
 .prose > p:first-child {
@@ -182,7 +184,7 @@ h1 a {
 }
 
 .prose strong {
-  @apply font-bold;
+  @apply font-semibold;
 }
 
 .prose ul {
@@ -248,6 +250,11 @@ table {
 .title {
   text-wrap: balance;
   text-wrap: pretty;
+  @apply text-3xl;
+}
+
+.subtitle {
+  @apply text-lg;
 }
 
 .rainbow em {

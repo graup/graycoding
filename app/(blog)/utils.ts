@@ -12,6 +12,7 @@ type Metadata = {
 function parseFrontmatter(fileContent: string) {
   const defaultMetadata = {
     title: fileContent.slice(0, 20),
+    subTitle: undefined,
     publishedAt: new Date().toISOString(),
     summary: undefined,
     image: undefined,
